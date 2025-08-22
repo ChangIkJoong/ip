@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
 public class Bruce {
     static String lines = "____________________________________________________________";
     static String name = "Bruce";
@@ -19,6 +24,16 @@ public class Bruce {
         System.out.println("Bye. Hope to see you again soon!");
         isRunning = false;
     }
+
+    public static String inputFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        return "";
+    }
+
+    static List<String> verifiedCommands = new ArrayList<>();
+    public static boolean verifyInput(String input) {
+        return verifiedCommands.contains(input);
+    };
 
     public static void main(String[] args) {
         greetUser();
