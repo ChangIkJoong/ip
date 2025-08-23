@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -8,14 +6,15 @@ public class Bruce {
     static String name = "Bruce";
     static boolean isRunning = true;
     static String logo =
-            "██████  ██████  ██    ██  ██████ ███████\n"+
-            "██   ██ ██   ██ ██    ██ ██      ██\n"+
-            "██████  ██████  ██    ██ ██      █████\n"+
-            "██   ██ ██   ██ ██    ██ ██      ██\n"+
-            "██████  ██   ██  ██████   ██████ ███████";
+            "██████  ██████  ██    ██  ██████ ███████\n" +
+                    "██   ██ ██   ██ ██    ██ ██      ██\n" +
+                    "██████  ██████  ██    ██ ██      █████\n" +
+                    "██   ██ ██   ██ ██    ██ ██      ██\n" +
+                    "██████  ██   ██  ██████   ██████ ███████";
+    //static String[] taskList = new String[10];
 
     public static void greetUser() {
-        System.out.println(logo +"\n" + lines);
+        System.out.println(logo + "\n" + lines);
         System.out.println("Hello! I'm " + name + "!");
         System.out.println("What can I do for you?\n" + lines);
     }
@@ -25,21 +24,27 @@ public class Bruce {
         isRunning = false;
     }
 
-    public static String inputFromUser(){
+    public static String inputFromUser() {
         Scanner scanner = new Scanner(System.in);
-        return "";
+        return scanner.nextLine();
     }
-
-    static List<String> verifiedCommands = new ArrayList<>();
-    public static boolean verifyInput(String input) {
-        return verifiedCommands.contains(input);
-    };
 
     public static void main(String[] args) {
         greetUser();
+        String inputPrompt;
 
         while (isRunning) {
+            inputPrompt = inputFromUser();
+            taskManager(inputPrompt);
+            System.out.println(lines);
+        }
+    }
+
+    private static void taskManager(String inputPrompt) {
+        if (inputPrompt.equals("bye") || inputPrompt.equals("Bye")) {
             exitProgram();
+        } else {
+            System.out.println(inputPrompt);
         }
     }
 }
