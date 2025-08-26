@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Bruce {
     static String lines = "____________________________________________________________";
@@ -11,7 +11,8 @@ public class Bruce {
                     "██████  ██████  ██    ██ ██      █████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██   ██  ██████   ██████ ███████";
-    //static String[] taskList = new String[10];
+    static Scanner in = new Scanner(System.in);
+    static ArrayList<String> tasks = new ArrayList<>();
 
     public static void greetUser() {
         System.out.println(logo + "\n" + lines);
@@ -25,8 +26,7 @@ public class Bruce {
     }
 
     public static String inputFromUser() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return in.nextLine();
     }
 
     public static void main(String[] args) {
@@ -34,6 +34,7 @@ public class Bruce {
         String inputPrompt;
 
         while (isRunning) {
+
             inputPrompt = inputFromUser();
             taskManager(inputPrompt);
             System.out.println(lines);
@@ -43,8 +44,13 @@ public class Bruce {
     private static void taskManager(String inputPrompt) {
         if (inputPrompt.equals("bye") || inputPrompt.equals("Bye")) {
             exitProgram();
+        } else if (inputPrompt.equals("list")) {
+            for (String task : tasks) {
+                System.out.println(task);
+            }
         } else {
-            System.out.println(inputPrompt);
+            tasks.add(inputPrompt);
+            System.out.println("added: " + inputPrompt);
         }
     }
 }
