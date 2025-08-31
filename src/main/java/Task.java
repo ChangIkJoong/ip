@@ -1,12 +1,12 @@
-public class Task {
+public abstract class Task {
     private String taskDescription;
-    private boolean completed;
+    private boolean isDone;
     private int taskId;
     private static int counter = 1;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
-        this.completed = false;
+        this.isDone = false;
         this.taskId = counter++;
     }
 
@@ -27,16 +27,14 @@ public class Task {
     }
 
     public boolean isCompleted() {
-        return completed;
+        return isDone;
     }
 
     public void markDone() {
-        this.completed = true;
+        this.isDone = true;
     }
 
     public void unmarkDone() {
-        this.completed = false;
+        this.isDone = false;
     }
-
-
 }

@@ -4,62 +4,82 @@ import java.util.Scanner;
 public class Bruce {
     static final String INLINE_TEXT_LINES = "____________________________________________________________";
     static final String BOT_NAME = "Bruce";
-    static boolean isRunning = true;
     static final String BOT_LOGO =
             "██████  ██████  ██    ██  ██████ ███████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██████  ██    ██ ██      █████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██   ██  ██████   ██████ ███████";
+
     static Scanner inputFromKeyboard = new Scanner(System.in);
     static ArrayList<Task> tasks = new ArrayList<>();
+    static boolean isRunning = true;
+    static TaskView view = new TaskView();
 
-    public static void greetUser() {
+    private static void greetUser() {
         System.out.println(BOT_LOGO + "\n" + INLINE_TEXT_LINES);
         System.out.println("Hello! I'm " + BOT_NAME + "!");
         System.out.println("What can I do for you?\n" + INLINE_TEXT_LINES);
     }
 
-    public static void exitProgram() {
-        System.out.println("Bye. Hope to see you again soon!");
+    private static void exitProgram() {
+        view.viewExit();
         isRunning = false;
     }
 
-    public static String inputFromUser() {
+    private static String inputFromUser() {
         return inputFromKeyboard.nextLine();
     }
 
-    public static void markDone(String prompt) {
+    private static void markDone(String prompt) {
         String[] parts = prompt.split(" ");
         int number = Integer.parseInt(parts[1]) - 1;
         if (number < tasks.size()) {
             Task task = tasks.get(number);
             task.markDone();
-            System.out.println("Nice! I've marked this task as done: ");
-            outputInterface(task);
+            view.viewTaskMarked(task);
         } else {
-            System.out.println("Task does not exist. Please try again.");
+            view.viewError();
         }
     }
 
-    public static void markUndone(String prompt) {
+    private static void markUndone(String prompt) {
         String[] parts = prompt.split(" ");
         int number = Integer.parseInt(parts[1]) - 1;
         if (number < tasks.size()) {
             Task task = tasks.get(number);
             task.unmarkDone();
-            System.out.println("OK, I've marked this task as not done yet: ");
-            outputInterface(task);
+            view.viewTaskUnmarked(task);
         } else {
-            System.out.println("Task does not exist. Please try again.");
+            view.viewError();
         }
     }
 
-    public static void outputInterface(Task task) {
-        if (task.isCompleted()) {
-            System.out.println("[X] " + task.getTaskId() + ". " + task.getTaskDescription());
+    private static void newTodoTask(String inputPrompt) {
+        Task newInput = new Todo(inputPrompt);
+        tasks.add(newInput);
+        view.viewTaskAdded(newInput, tasks.size());
+    }
+
+    private static void newDeadlineTask(String inputPrompt) {
+        String[] parts = inputPrompt.split("/by ");
+        if (parts.length == 2) {
+            Task newInput = new Deadline(parts[0], parts[1]);
+            tasks.add(newInput);
+            view.viewTaskAdded(newInput, tasks.size());
         } else {
-            System.out.println("[ ] " + task.getTaskId() + ". " + task.getTaskDescription());
+            view.viewError();
+        }
+    }
+
+    private static void newEventTask(String inputPrompt) {
+        String[] parts = inputPrompt.split(" /from | /to ");
+        if (parts.length == 3) {
+            Task newInput = new Event(parts[0], parts[1], parts[2]);
+            tasks.add(newInput);
+            view.viewTaskAdded(newInput, tasks.size());
+        } else {
+            view.viewError();
         }
     }
 
@@ -67,20 +87,19 @@ public class Bruce {
         if (inputPrompt.equalsIgnoreCase("bye")) {
             exitProgram();
         } else if (inputPrompt.isEmpty()) {
-            System.out.println("Please try again.");
+            view.viewError();
         } else if (inputPrompt.toLowerCase().startsWith("mark ")) {
             markDone(inputPrompt);
         } else if (inputPrompt.toLowerCase().startsWith("unmark ")) {
             markUndone(inputPrompt);
         } else if (inputPrompt.equalsIgnoreCase("list")) {
-            System.out.println("Here are the tasks in your list: ");
-            for (Task task : tasks) {
-                outputInterface(task);
-            }
+            view.viewTaskList(tasks);
+        } else if (inputPrompt.toLowerCase().startsWith("deadline ")) {
+            newDeadlineTask(inputPrompt);
+        } else if (inputPrompt.toLowerCase().startsWith("event ")) {
+            newEventTask(inputPrompt);
         } else {
-            Task newInput = new Task(inputPrompt);
-            tasks.add(newInput);
-            System.out.println("added: " + inputPrompt);
+            newTodoTask(inputPrompt);
         }
     }
 
