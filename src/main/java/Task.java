@@ -10,14 +10,6 @@ public abstract class Task {
         this.taskId = counter++;
     }
 
-    public void setTaskID(int taskId) {
-        this.taskId = taskId;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
     public int getTaskId() {
         return taskId;
     }

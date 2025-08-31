@@ -1,5 +1,4 @@
 public class Deadline extends Task {
-
     protected String endDate;
 
     public String getEndDate() {

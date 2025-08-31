@@ -1,4 +1,24 @@
-public class TaskView {
+public class View {
+    static final String INLINE_TEXT_LINES = "____________________________________________________________";
+    static final String BOT_NAME = "Bruce";
+    static final String BOT_LOGO =
+            "██████  ██████  ██    ██  ██████ ███████\n" +
+                    "██   ██ ██   ██ ██    ██ ██      ██\n" +
+                    "██████  ██████  ██    ██ ██      █████\n" +
+                    "██   ██ ██   ██ ██    ██ ██      ██\n" +
+                    "██████  ██   ██  ██████   ██████ ███████";
+
+
+    public static void printLine() {
+        System.out.println(INLINE_TEXT_LINES);
+    }
+
+    public static void greetUser() {
+        View.printLine();
+        System.out.println(BOT_LOGO + "\n" + INLINE_TEXT_LINES);
+        System.out.println("Hello! I'm " + BOT_NAME + "!");
+        System.out.println("What can I do for you?\n" + INLINE_TEXT_LINES);
+    }
 
     public void viewTaskAdded(Task task, int total) {
         System.out.println("____________________________________________________________");
@@ -7,11 +27,11 @@ public class TaskView {
         System.out.println(" Now you have " + total + " tasks in the list.");
     }
 
-    public void viewExit() {
+    public static void viewExit() {
         System.out.println("Bye.");
     }
 
-    public void viewError() {
+    public static void viewError() {
         System.out.println("Error. Please try again.");
     }
 
