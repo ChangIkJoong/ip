@@ -2,22 +2,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bruce {
-    static final String LINES = "____________________________________________________________";
-    static final String NAME = "Bruce";
+    static final String INLINE_TEXT_LINES = "____________________________________________________________";
+    static final String BOT_NAME = "Bruce";
     static boolean isRunning = true;
-    static final String LOGO =
+    static final String BOT_LOGO =
             "██████  ██████  ██    ██  ██████ ███████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██████  ██    ██ ██      █████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██   ██  ██████   ██████ ███████";
-    static Scanner in = new Scanner(System.in);
+    static Scanner inputFromKeyboard = new Scanner(System.in);
     static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void greetUser() {
-        System.out.println(LOGO + "\n" + LINES);
-        System.out.println("Hello! I'm " + NAME + "!");
-        System.out.println("What can I do for you?\n" + LINES);
+        System.out.println(BOT_LOGO + "\n" + INLINE_TEXT_LINES);
+        System.out.println("Hello! I'm " + BOT_NAME + "!");
+        System.out.println("What can I do for you?\n" + INLINE_TEXT_LINES);
     }
 
     public static void exitProgram() {
@@ -26,7 +26,7 @@ public class Bruce {
     }
 
     public static String inputFromUser() {
-        return in.nextLine();
+        return inputFromKeyboard.nextLine();
     }
 
     public static void markDone(String prompt) {
@@ -57,22 +57,22 @@ public class Bruce {
 
     public static void outputInterface(Task task) {
         if (task.isCompleted()) {
-            System.out.println("[X] " + task.getTaskId() + "." + task.getTaskDescription());
+            System.out.println("[X] " + task.getTaskId() + ". " + task.getTaskDescription());
         } else {
-            System.out.println("[ ] " + task.getTaskId() + "." + task.getTaskDescription());
+            System.out.println("[ ] " + task.getTaskId() + ". " + task.getTaskDescription());
         }
     }
 
     private static void taskManager(String inputPrompt) {
-        if (inputPrompt.equals("bye") || inputPrompt.equals("Bye")) {
+        if (inputPrompt.equalsIgnoreCase("bye")) {
             exitProgram();
         } else if (inputPrompt.isEmpty()) {
             System.out.println("Please try again.");
-        } else if (inputPrompt.startsWith("mark ")) {
+        } else if (inputPrompt.toLowerCase().startsWith("mark ")) {
             markDone(inputPrompt);
-        } else if (inputPrompt.startsWith("unmark ")) {
+        } else if (inputPrompt.toLowerCase().startsWith("unmark ")) {
             markUndone(inputPrompt);
-        } else if (inputPrompt.equals("list")) {
+        } else if (inputPrompt.equalsIgnoreCase("list")) {
             System.out.println("Here are the tasks in your list: ");
             for (Task task : tasks) {
                 outputInterface(task);
@@ -92,7 +92,7 @@ public class Bruce {
         while (isRunning) {
             inputPrompt = inputFromUser();
             taskManager(inputPrompt);
-            System.out.println(LINES);
+            System.out.println(INLINE_TEXT_LINES);
         }
     }
 }
