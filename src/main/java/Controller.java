@@ -11,18 +11,17 @@ public class Controller {
         this.view = view;
     }
 
-    public void run() {
-        View.greetUser();
-        Scanner scanner = new Scanner(System.in);
+    public void runProgram() {
+        view.greetUser();
         while (isRunning) {
             String inputPrompt = scanner.nextLine();
-            taskManager(inputPrompt);
-            View.printLine();
+            handleInput(inputPrompt);
+            view.printLine();
         }
     }
 
     private void exitProgram() {
-        View.viewExit();
+        view.viewExit();
         isRunning = false;
     }
 
@@ -33,7 +32,7 @@ public class Controller {
         if (isCompleted) {
             view.viewTaskMarked(model.getTask(index));
         } else {
-            View.viewError();
+            view.viewError();
         }
     }
 
@@ -44,43 +43,43 @@ public class Controller {
         if (isCompleted) {
             view.viewTaskUnmarked(model.getTask(index));
         } else {
-            View.viewError();
+            view.viewError();
         }
     }
 
-    private void newTodoTask(String inputPrompt) {
+    private void addTodoTask(String inputPrompt) {
         Task newInput = new Todo(inputPrompt);
         model.addTask(newInput);
         view.viewTaskAdded(newInput, model.getTaskCount());
     }
 
-    private void newDeadlineTask(String inputPrompt) {
+    private void addDeadlineTask(String inputPrompt) {
         String[] parts = inputPrompt.split("/by ");
         if (parts.length == 2) {
             Task newInput = new Deadline(parts[0], parts[1]);
             model.addTask(newInput);
             view.viewTaskAdded(newInput, model.getTaskCount());
         } else {
-            View.viewError();
+            view.viewError();
         }
     }
 
-    private void newEventTask(String inputPrompt) {
+    private void addEventTask(String inputPrompt) {
         String[] parts = inputPrompt.split(" /from | /to ");
         if (parts.length == 3) {
             Task newInput = new Event(parts[0], parts[1], parts[2]);
             model.addTask(newInput);
             view.viewTaskAdded(newInput, model.getTaskCount());
         } else {
-            View.viewError();
+            view.viewError();
         }
     }
 
-    private void taskManager(String inputPrompt) {
+    private void handleInput(String inputPrompt) {
         if (inputPrompt.equalsIgnoreCase("Bye.")) {
             exitProgram();
         } else if (inputPrompt.isEmpty()) {
-            View.viewError();
+            view.viewError();
         } else if (inputPrompt.toLowerCase().startsWith("mark ")) {
             markTaskDone(inputPrompt);
         } else if (inputPrompt.toLowerCase().startsWith("unmark ")) {
@@ -88,11 +87,11 @@ public class Controller {
         } else if (inputPrompt.equalsIgnoreCase("list")) {
             view.viewTaskList(model.getTasks());
         } else if (inputPrompt.toLowerCase().startsWith("deadline ")) {
-            newDeadlineTask(inputPrompt);
+            addDeadlineTask(inputPrompt);
         } else if (inputPrompt.toLowerCase().startsWith("event ")) {
-            newEventTask(inputPrompt);
+            addEventTask(inputPrompt);
         } else {
-            newTodoTask(inputPrompt);
+            addTodoTask(inputPrompt);
         }
     }
 }

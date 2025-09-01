@@ -27,11 +27,11 @@ public class View {
         System.out.println(" Now you have " + total + " tasks in the list.");
     }
 
-    public static void viewExit() {
+    public void viewExit() {
         System.out.println("Bye.");
     }
 
-    public static void viewError() {
+    public void viewError() {
         System.out.println("Error. Please try again.");
     }
 
