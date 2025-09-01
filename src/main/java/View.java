@@ -1,7 +1,7 @@
 public class View {
-    static final String INLINE_TEXT_LINES = "____________________________________________________________";
-    static final String BOT_NAME = "Bruce";
-    static final String BOT_LOGO =
+    public static final String INLINE_TEXT_LINES = "____________________________________________________________";
+    public static final String BOT_NAME = "Bruce";
+    public static final String BOT_LOGO =
             "██████  ██████  ██    ██  ██████ ███████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
                     "██████  ██████  ██    ██ ██      █████\n" +
