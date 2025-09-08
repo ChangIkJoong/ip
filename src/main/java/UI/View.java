@@ -1,3 +1,10 @@
+package UI;
+
+import Model.Deadline;
+import Model.Event;
+import Model.Task;
+import Model.Todo;
+
 public class View {
     public static final String INLINE_TEXT_LINES = "____________________________________________________________";
     public static final String BOT_NAME = "Bruce";
@@ -17,6 +24,7 @@ public class View {
         View.printLine();
         System.out.println(BOT_LOGO + "\n" + INLINE_TEXT_LINES);
         System.out.println("Hello! I'm " + BOT_NAME + "!");
+        System.out.println("For full list of instructions, type: help");
         System.out.println("What can I do for you?\n" + INLINE_TEXT_LINES);
     }
 
@@ -27,7 +35,7 @@ public class View {
         System.out.println(" Now you have " + total + " tasks in the list.");
     }
 
-    public void viewExit() {
+    public static void viewExit() {
         System.out.println("Bye.");
     }
 
@@ -74,5 +82,18 @@ public class View {
 
     public String isCompleteStatus(Task task) {
         return task.isCompleted() ? "[X] " : "[ ] ";
+    }
+
+    public static void showInstructions() {
+        //DISCLAIMER: ChatGPT was used to generate this list of commands.
+        System.out.println("List of commands:");
+        System.out.println("  todo <description>                    : Adds a Todo task.");
+        System.out.println("  deadline <desc> /by <date>            : Adds a Deadline task with a due date.");
+        System.out.println("  event <desc> /from <start> /to <end>  : Adds an Event task with start and end times.");
+        System.out.println("  list                                  : Shows all tasks.");
+        System.out.println("  mark <task number>                    : Marks a task as done.");
+        System.out.println("  unmark <task number>                  : Marks a task as not done.");
+        System.out.println("  bye.                                  : Exits the chatbot.");
+        System.out.println("  help                                  : Shows this instruction list.");
     }
 }

@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Task {
     private String taskDescription;
     private boolean isDone;
