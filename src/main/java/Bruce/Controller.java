@@ -3,11 +3,11 @@ package Bruce;
 import Exceptions.DukeException;
 import Exceptions.EmptyDescriptionException;
 import Exceptions.UnknownInputException;
-import Model.Deadline;
-import Model.Event;
+import Model.TaskVariants.Deadline;
+import Model.TaskVariants.Event;
 import Model.Model;
-import Model.Task;
-import Model.Todo;
+import Model.TaskVariants.Task;
+import Model.TaskVariants.Todo;
 import UI.View;
 
 import java.util.Scanner;

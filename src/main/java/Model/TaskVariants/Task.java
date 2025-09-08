@@ -1,4 +1,4 @@
-package Model;
+package Model.TaskVariants;
 
 public abstract class Task {
     private String taskDescription;

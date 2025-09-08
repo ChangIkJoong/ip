@@ -1,9 +1,9 @@
 package UI;
 
-import Model.Deadline;
-import Model.Event;
-import Model.Task;
-import Model.Todo;
+import Model.TaskVariants.Deadline;
+import Model.TaskVariants.Event;
+import Model.TaskVariants.Task;
+import Model.TaskVariants.Todo;
 
 public class View {
     public static final String INLINE_TEXT_LINES = "____________________________________________________________";
