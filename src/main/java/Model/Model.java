@@ -1,5 +1,7 @@
 package Model;
 
+import Model.TaskVariants.Task;
+
 import java.util.ArrayList;
 
 public class Model {

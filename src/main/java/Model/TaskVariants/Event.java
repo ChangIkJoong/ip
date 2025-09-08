@@ -1,4 +1,4 @@
-package Model;
+package Model.TaskVariants;
 
 public class Event extends Task {
     protected String startDate;
