@@ -2,12 +2,12 @@ public abstract class Task {
     private String taskDescription;
     private boolean isDone;
     private int taskId;
-    private static int counter = 1;
+    private static int taskCounter = 1;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
         this.isDone = false;
-        this.taskId = counter++;
+        this.taskId = taskCounter++;
     }
 
     public int getTaskId() {

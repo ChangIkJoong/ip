@@ -16,7 +16,7 @@ public class Model {
     }
 
     public boolean markDone(int index) {
-        if (index >= 0 && index < tasks.size()) {
+        if (rangeCheck(index)) {
             tasks.get(index).markDone();
             return true;
         }
@@ -24,7 +24,7 @@ public class Model {
     }
 
     public boolean unmarkDone(int index) {
-        if (index >= 0 && index < tasks.size()) {
+        if (rangeCheck(index)) {
             tasks.get(index).unmarkDone();
             return true;
         }
@@ -35,5 +35,7 @@ public class Model {
         return tasks.size();
     }
 
-
+    private boolean rangeCheck(int index) {
+        return (index >= 0 && index < tasks.size());
+    }
 }

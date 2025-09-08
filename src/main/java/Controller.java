@@ -56,6 +56,7 @@ public class Controller {
     private void addDeadlineTask(String inputPrompt) {
         String[] parts = inputPrompt.split("/by ");
         if (parts.length == 2) {
+            parts[0] = parts[0].replaceFirst("(?i)deadline", "").trim();
             Task newInput = new Deadline(parts[0], parts[1]);
             model.addTask(newInput);
             view.viewTaskAdded(newInput, model.getTaskCount());
@@ -67,6 +68,7 @@ public class Controller {
     private void addEventTask(String inputPrompt) {
         String[] parts = inputPrompt.split(" /from | /to ");
         if (parts.length == 3) {
+            parts[0] = parts[0].replaceFirst("(?i)event", "").trim();
             Task newInput = new Event(parts[0], parts[1], parts[2]);
             model.addTask(newInput);
             view.viewTaskAdded(newInput, model.getTaskCount());
@@ -76,22 +78,16 @@ public class Controller {
     }
 
     private void handleInput(String inputPrompt) {
-        if (inputPrompt.equalsIgnoreCase("Bye.")) {
-            exitProgram();
-        } else if (inputPrompt.isEmpty()) {
-            view.viewError();
-        } else if (inputPrompt.toLowerCase().startsWith("mark ")) {
-            markTaskDone(inputPrompt);
-        } else if (inputPrompt.toLowerCase().startsWith("unmark ")) {
-            unmarkTaskDone(inputPrompt);
-        } else if (inputPrompt.equalsIgnoreCase("list")) {
-            view.viewTaskList(model.getTasks());
-        } else if (inputPrompt.toLowerCase().startsWith("deadline ")) {
-            addDeadlineTask(inputPrompt);
-        } else if (inputPrompt.toLowerCase().startsWith("event ")) {
-            addEventTask(inputPrompt);
-        } else {
-            addTodoTask(inputPrompt);
+        String command = inputPrompt.trim().split(" ")[0].toLowerCase();
+        switch (command) {
+        case "bye." -> exitProgram();
+        case "" -> { /* TODO, need to in next session add the exception here */ }
+        case "mark" -> markTaskDone(inputPrompt);
+        case "unmark" -> unmarkTaskDone(inputPrompt);
+        case "list" -> view.viewTaskList(model.getTasks());
+        case "deadline" -> addDeadlineTask(inputPrompt);
+        case "event" -> addEventTask(inputPrompt);
+        default -> addTodoTask(inputPrompt);
         }
     }
 }
