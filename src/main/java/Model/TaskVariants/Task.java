@@ -12,6 +12,10 @@ public abstract class Task {
         this.taskId = taskCounter++;
     }
 
+    public static Task fromStorageString(String line) {
+        return null;
+    }
+
     public int getTaskId() {
         return taskId;
     }
@@ -30,5 +34,13 @@ public abstract class Task {
 
     public void unmarkDone() {
         this.isDone = false;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    public static void decrementCounter() {
+        taskCounter--;
     }
 }
