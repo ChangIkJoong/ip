@@ -54,7 +54,6 @@ public class CodecConverter {
         String outputString = taskVariant + " | " +
                 completionBoolean + " | " +
                 taskDescription + " | " +
-                endDate + " | " +
                 startDate + " | " +
                 endDate;
 

@@ -39,6 +39,7 @@ public class Controller {
             } catch (Exception e) {
                 view.viewError("Unexpected error: " + e.getMessage());
             } finally {
+                dataHandler.getInstance().saveTasks(Model.getInstance().getTasks());
                 View.printLine();
             }
         }

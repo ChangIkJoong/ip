@@ -5,6 +5,7 @@ import Exceptions.UnknownInputException;
 import Model.TaskVariants.Task;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,16 +18,16 @@ import java.util.List;
 public class dataHandler {
     private static dataHandler INSTANCE = null;
 
-    private static final Path DATA_DIR = Paths.get(System.getProperty("user.home"), "bruceData");
-    private static final Path DATA_FILE = DATA_DIR.resolve("bruce.txt");
+    private static final Path DIRECTORY = Paths.get(System.getProperty("user.home"), "bruceData");
+    private static final Path FILE = DIRECTORY.resolve("bruce.txt");
 
     private dataHandler() {
         try {
-            if (!Files.exists(DATA_DIR)) {
-                Files.createDirectories(DATA_DIR);
+            if (!Files.exists(DIRECTORY)) {
+                Files.createDirectories(DIRECTORY);
             }
-            if (!Files.exists(DATA_FILE)) {
-                Files.createFile(DATA_FILE);
+            if (!Files.exists(FILE)) {
+                Files.createFile(FILE);
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to initialize directory, check directory and file: ", e);
@@ -42,7 +43,7 @@ public class dataHandler {
 
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
-        if (!Files.exists(DATA_FILE)) {
+        if (!Files.exists(FILE)) {
             return tasks;
         }
         loadInput(tasks);
@@ -51,7 +52,7 @@ public class dataHandler {
 
     private static void loadInput(ArrayList<Task> tasks) {
         try {
-            List<String> inputList = Files.readAllLines(DATA_FILE);
+            List<String> inputList = Files.readAllLines(FILE);
             for (String input : inputList) {
                 convertInput(tasks, input);
             }
@@ -73,24 +74,22 @@ public class dataHandler {
     }
 
     public void saveTasks(ArrayList<Task> tasks) {
-        try (BufferedWriter writer = Files.newBufferedWriter(DATA_FILE,
-                StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
+        try (FileWriter fw = new FileWriter(FILE.toString())) {
             for (Task task : tasks) {
-                encodeTask(task, writer);
+                encodeTask(task, fw);
             }
         } catch (IOException e) {
             System.err.println("Error while saving tasks in I/O: " + e.getMessage());
         }
     }
 
-    private static void encodeTask(Task task, BufferedWriter writer) throws IOException {
-        String encoded;
+    private static void encodeTask(Task task, FileWriter fw) throws IOException {
+        String encodedTask;
         try {
-            encoded = CodecConverter.encodeToFile(task);
+            encodedTask = CodecConverter.encodeToFile(task);
         } catch (BruceException e) {
             throw new RuntimeException(e);
         }
-        writer.write(encoded);
-        writer.newLine();
+        fw.write(encodedTask + System.lineSeparator());
     }
 }
