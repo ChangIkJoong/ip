@@ -3,15 +3,14 @@ package Bruce;
 import Exceptions.BruceException;
 import Exceptions.EmptyDescriptionException;
 import Exceptions.UnknownInputException;
+import java.util.Scanner;
 import Model.TaskVariants.Deadline;
 import Model.TaskVariants.Event;
-import Model.Model;
 import Model.dataHandler;
+import Model.Model;
 import Model.TaskVariants.Task;
 import Model.TaskVariants.Todo;
 import UI.View;
-
-import java.util.Scanner;
 
 public class Controller {
     private final Model model;

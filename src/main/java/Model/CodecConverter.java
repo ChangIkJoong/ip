@@ -2,11 +2,11 @@ package Model;
 
 import Exceptions.BruceException;
 import Exceptions.UnknownInputException;
-import Model.TaskVariants.Task;
-import Model.TaskVariants.Todo;
+
 import Model.TaskVariants.Deadline;
 import Model.TaskVariants.Event;
-
+import Model.TaskVariants.Task;
+import Model.TaskVariants.Todo;
 
 /* example given in the instructions
 T | 1 | read book
