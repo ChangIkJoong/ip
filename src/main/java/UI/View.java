@@ -48,7 +48,7 @@ public class View {
     }
 
     public void viewTaskList(java.util.List<Task> tasks) {
-        System.out.println(" Here are the tasks in your list:");
+        System.out.println("Here are the tasks in your list:");
         for (Task task : tasks) {
             System.out.println(" " + task.getTaskId() + "." + viewTask(task));
         }
@@ -82,6 +82,10 @@ public class View {
 
     public String isCompleteStatus(Task task) {
         return task.isCompleted() ? "[X] " : "[ ] ";
+    }
+
+    public void succesfullyDeletedTask(Task deletedTask) {
+        System.out.println("the Task: " + deletedTask.getTaskDescription() + " has successfully been deleted.");
     }
 
     public static void showInstructions() {
