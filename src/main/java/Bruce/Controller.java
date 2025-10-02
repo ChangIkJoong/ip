@@ -261,7 +261,7 @@ public class Controller {
         case "delete" -> removeTask(inputPrompt);
         case "list" -> view.viewTaskList(model.getTasks());
         case "help" -> View.showInstructions();
-        //case "find" -> findTasks(inputPrompt);
+        case "find" -> findTasks(inputPrompt);
         default -> throw new UnknownInputException(command);
         }
     }
