@@ -217,6 +217,32 @@ public class Controller {
 
 
     /**
+     * Finds tasks whose descriptions contain the provided keyword
+     * and displays these via View.
+     *
+     * @param inputPrompt command plus keyword
+     */
+    private void findTasks(String inputPrompt) {
+        String inputWord = inputPrompt.replaceFirst("find", "").trim();
+        if (inputWord.isEmpty()) {
+            view.viewError("Please provide a keyword to search for. Example: 'find book'");
+            return;
+        }
+        var matchingTasks = new java.util.ArrayList<Task>();
+        for (Task task : model.getTasks()) {
+            if (task.getTaskDescription().toLowerCase().contains(inputWord.toLowerCase())) {
+                matchingTasks.add(task);
+            }
+        }
+        view.viewFoundTasks(matchingTasks);
+    }
+
+    /*
+    private void sortTasks() {
+
+    }
+    */
+    /**
      * Processes the command word and sends it to the appropriate handler.
      *
      * @param inputPrompt raw user input
