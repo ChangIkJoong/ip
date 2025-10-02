@@ -15,7 +15,6 @@ import Model.TaskVariants.Todo;
 import UI.View;
 
 
-
 /**
  * Controller for the Bruce task manager (MVC).
  * Reads user input, interprets commands, applies changes to the {@link Model},
@@ -33,13 +32,12 @@ public class Controller {
      * Creates a controller that wires a model to a view.
      *
      * @param model the application model
-     * @param view the console view
+     * @param view  the console view
      */
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
-
 
 
     /**
@@ -85,7 +83,7 @@ public class Controller {
      * @param inputPrompt full user input containing a command and a task number (e.g., {@code "mark 3"})
      * @return zero-based index into the model
      * @throws IndexOutOfBoundsException if the index token is missing or outside valid bounds
-     * @throws NumberFormatException if the index token is not an integer
+     * @throws NumberFormatException     if the index token is not an integer
      */
     private int checkIndexing(String inputPrompt) throws IndexOutOfBoundsException {
         String[] parts = inputPrompt.trim().split("\\s+");
@@ -215,7 +213,6 @@ public class Controller {
         view.viewTaskList(model.getTasks());
     }
 
-
     /**
      * Finds tasks whose descriptions contain the provided keyword
      * and displays these via View.
@@ -237,11 +234,6 @@ public class Controller {
         view.viewFoundTasks(matchingTasks);
     }
 
-    /*
-    private void sortTasks() {
-
-    }
-    */
     /**
      * Processes the command word and sends it to the appropriate handler.
      *

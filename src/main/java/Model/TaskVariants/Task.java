@@ -1,7 +1,7 @@
 package Model.TaskVariants;
 
 public abstract class Task {
-    private String taskDescription;
+    private final String taskDescription;
     private boolean isDone;
     private int taskId;
     private static int taskCounter = 1;
@@ -12,9 +12,6 @@ public abstract class Task {
         this.taskId = taskCounter++;
     }
 
-    public static Task fromStorageString(String line) {
-        return null;
-    }
 
     public int getTaskId() {
         return taskId;

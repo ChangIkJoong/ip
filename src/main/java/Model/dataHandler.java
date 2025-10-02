@@ -21,12 +21,18 @@ import java.util.List;
  * <pre>{@code ${user.home}/bruceData/bruce.txt}</pre>
  */
 public class dataHandler {
-    /** Singleton instance. */
+    /**
+     * Singleton instance.
+     */
     private static dataHandler INSTANCE = null;
 
-    /** Directory used for storing Bruce data (e.g., {@code ~/bruceData}). */
+    /**
+     * Directory used for storing Bruce data (e.g., {@code ~/bruceData}).
+     */
     private static final Path DIRECTORY = Paths.get(System.getProperty("user.home"), "bruceData");
-    /** Main data file (e.g., {@code ~/bruceData/bruce.txt}). */
+    /**
+     * Main data file (e.g., {@code ~/bruceData/bruce.txt}).
+     */
     private static final Path FILE = DIRECTORY.resolve("bruce.txt");
 
     /**
@@ -133,7 +139,7 @@ public class dataHandler {
      * Encodes a task and writes it to the provided {@link FileWriter}, followed by a newline.
      *
      * @param task the task to encode and write
-     * @param fw open file writer positioned for writing
+     * @param fw   open file writer positioned for writing
      * @throws IOException if the write operation fails
      */
     private static void encodeTask(Task task, FileWriter fw) throws IOException {

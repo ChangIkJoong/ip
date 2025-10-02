@@ -3,7 +3,6 @@ package Model;
 import Model.TaskVariants.Task;
 
 import java.util.ArrayList;
-//import java.time.LocalDate;
 
 /**
  * The model for managing {@link Task} items (MVC).
@@ -16,13 +15,16 @@ import java.util.ArrayList;
  */
 
 public class Model {
-    /** The program's main list for all tasks (in insertion order). */
+    /**
+     * The program's main list for all tasks (in insertion order).
+     */
     private final ArrayList<Task> tasks;
 
     /**
      * Initializes the model, then loading tasks from persistence via {@code dataHandler}.
      */
     private static Model INSTANCE = new Model();
+
     private Model() {
         dataHandler.getInstance();
         tasks = dataHandler.getInstance().loadTasks();

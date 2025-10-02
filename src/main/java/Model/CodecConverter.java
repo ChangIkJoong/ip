@@ -9,7 +9,6 @@ import Model.TaskVariants.Task;
 import Model.TaskVariants.Todo;
 
 
-
 /**
  * Converts {@link Task} objects to and from a text file format.
  * <p>
@@ -133,7 +132,7 @@ public class CodecConverter {
      * Creates a {@link Task} from the input tokens and variants.
      *
      * @param inputString original line
-     * @param dataInput tokenized fields
+     * @param dataInput   tokenized fields
      * @param taskVariant variant code ({@code 'T'}, {@code 'D'}, {@code 'E'})
      * @return the constructed task
      * @throws UnknownInputException if the variant code is not recognized
@@ -154,11 +153,11 @@ public class CodecConverter {
      * Validates and constructs an {@link Event} from tokens:
      * {@code E | <completed> | <description> | <start> | <end>}.
      *
-     * @param inputString original line
-     * @param dataInput tokenized fields
+     * @param inputString     original line
+     * @param dataInput       tokenized fields
      * @param taskDescription description field from the input
      * @return a new {@link Event}
-     * @throws UnknownInputException if the token count is not exactly 5 (length of a Event)
+     * @throws UnknownInputException if the token count is not exactly 5 (length of an Event)
      */
     private static Event decodeEvent(String inputString, String[] dataInput, String taskDescription) throws UnknownInputException {
         if (dataInput.length != 5) {
@@ -171,8 +170,8 @@ public class CodecConverter {
      * Validates and constructs a {@link Deadline} from tokens:
      * {@code D | <completed> | <description> | <byDate>}.
      *
-     * @param inputString    original line
-     * @param dataInput      tokenized fields
+     * @param inputString     original line
+     * @param dataInput       tokenized fields
      * @param taskDescription description field from the input
      * @return a new {@link Deadline}
      * @throws UnknownInputException if the token count is not exactly 4 (length of a Deadline)
