@@ -1,30 +1,47 @@
 package Model.TaskVariants;
 
-public class Event extends Task {
-    protected String startDate;
-    protected String endDate;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Event(String taskDescription, String startDate, String endDate) {
+public class Event extends Task {
+    protected String startStringDate;
+    protected String endStringDate;
+    /*
+    private boolean hasLocalDate;
+    private final LocalDate startLocalDate;
+    private final LocalDate endLocalDate;
+    */
+
+    public Event(String taskDescription, String inputStartDate, String inputEndDate) {
         super(taskDescription);
-        this.startDate = startDate;
-        this.endDate = endDate;
+        //this.hasLocalDate = false;
+        this.startStringDate = inputStartDate;
+        this.endStringDate = inputEndDate;
+        /*
+        this.startLocalDate = tryParsing(inputStartDate);
+        this.endLocalDate = tryParsing(inputEndDate);
+        */
     }
+
+    /*
+    private LocalDate tryParsing(String parseString) {
+        try {
+            this.hasLocalDate = true;
+            return LocalDate.parse(parseString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } catch (DateTimeParseException e) {
+            System.out.println("no time/date added, will be default date.");
+        }
+        return LocalDate.MAX;
+    }
+     */
 
     public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        return startStringDate;
     }
 
     public String getEndDate() {
-        return endDate;
+        return endStringDate;
     }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
 
 }
