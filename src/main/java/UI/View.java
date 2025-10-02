@@ -5,7 +5,6 @@ import Model.TaskVariants.Event;
 import Model.TaskVariants.Task;
 import Model.TaskVariants.Todo;
 
-
 /**
  * Console-facing view for the Bruce task manager (MVC).
  * Responsible for rendering strings to standard output: greetings, lists,
@@ -14,13 +13,19 @@ import Model.TaskVariants.Todo;
  * into natural and readable lines.
  */
 public class View {
-    /** Horizontal text separator for the different sections in console output. */
+    /**
+     * Horizontal text separator for the different sections in console output.
+     */
     public static final String INLINE_TEXT_LINES = "____________________________________________________________";
 
-    /** The bot's name shown in the output when called. */
+    /**
+     * The bot's name shown in the output when called.
+     */
     public static final String BOT_NAME = "Bruce";
 
-    /** ASCII render of logo. */
+    /**
+     * ASCII render of logo.
+     */
     public static final String BOT_LOGO =
             "██████  ██████  ██    ██  ██████ ███████\n" +
                     "██   ██ ██   ██ ██    ██ ██      ██\n" +
@@ -153,7 +158,7 @@ public class View {
      *
      * @param tasks the tasks that matched the search
      */
-    public void viewFoundTasks (java.util.List<Task> tasks) {
+    public void viewFoundTasks(java.util.List<Task> tasks) {
         for (Task task : tasks) {
             System.out.println(" " + task.getTaskId() + "." + viewTask(task));
         }
