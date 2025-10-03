@@ -1,7 +1,7 @@
 # BRUCE User Guide
 
 ---
-![Product screenshot](images/SS-opening.png)
+![Product screenshot](images/img.png)
 
 This is BRUCE, your very own assistant ChatBot!
 BRUCE can assist with documenting various tasks, in this case both future To Do:s, Deadlines and Events all via the text Command-Line Interface (CLI for short).
